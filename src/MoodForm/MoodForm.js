@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+import moment from "moment";
 
 const MoodForm = () => {
   const [start, setStart] = useState("");
+  const [today, setToday] = useState(moment().format("YYYY-MM-DD"));
+
+  const calculateDay = (start) => {
+    const startDate = moment(start);
+    const endDate = moment(today);
+
+    return endDate.diff(startDate, "days");
+  };
 
   return (
     <div>
@@ -16,6 +25,7 @@ const MoodForm = () => {
             ></input>
           </div>
         </label>
+        {start && <div> Day {calculateDay(start)} </div>}
       </form>
     </div>
   );
