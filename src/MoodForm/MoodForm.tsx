@@ -5,7 +5,7 @@ const MoodForm = () => {
   const [start, setStart] = useState("");
   const [today, setToday] = useState(moment().format("YYYY-MM-DD"));
 
-  const calculateDay = (start) => {
+  const calculateDay = (start: string) => {
     const startDate = moment(start);
     const endDate = moment(today);
 
