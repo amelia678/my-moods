@@ -66,6 +66,9 @@ const MoodForm = () => {
           </select>
         </label>
         </div>
+        <div style={styles.formInput}>
+        <button type='submit'>Submit</button>
+        </div>
       </form>
     </div>
   );
