@@ -1,5 +1,5 @@
 import React from 'react'
-import { VictoryBar } from 'victory'
+import { VictoryBar, VictoryChart } from 'victory'
 
 const data = [
   { day: 1, mood: 3 },
@@ -11,7 +11,9 @@ const data = [
 const Charts = () => {
   return (
     <div>
-      <VictoryBar />
+      <VictoryChart>
+        <VictoryBar data={data} x="day" y="mood" />
+      </VictoryChart>
     </div>
   )
 }
