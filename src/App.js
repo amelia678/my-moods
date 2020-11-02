@@ -1,16 +1,26 @@
-import React from "react";
-import "./App.css";
-import MoodForm from "./MoodForm/MoodForm";
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import './App.css'
+import MoodForm from './MoodForm/MoodForm'
 
 function App() {
   return (
-    <div className="App">
-      <h3>My Moods</h3>
-      <MoodForm />
-
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route path='/charts'>
+          <div className='App'>
+            <div>charts will go here</div>
+          </div>
+        </Route>
+        <Route path='/'>
+          <div className='App'>
+            <MoodForm />
+          </div>
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
-export default App;
+export default App
