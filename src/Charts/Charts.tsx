@@ -12,15 +12,25 @@ const xValues = data.map((point) => {
   return point.day
 })
 
+const moodValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+
 const Charts = () => {
   return (
-    <div>
+    <div style={styles.chartContainer}>
       <VictoryChart domainPadding={20}>
-        <VictoryAxis tickValues={xValues} tickFormat={(x) => (`Day ${x}`)} />
+        <VictoryAxis tickValues={xValues} tickFormat={(x) => `Day ${x}`} />
+        <VictoryAxis dependentAxis tickValues={moodValues} />
         <VictoryBar data={data} x='day' y='mood' />
       </VictoryChart>
     </div>
   )
+}
+
+const styles = {
+  chartContainer: {
+    width: '50%',
+    margin: 'auto'
+  }
 }
 
 export default Charts
