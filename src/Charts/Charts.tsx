@@ -1,5 +1,5 @@
 import React from 'react'
-import { VictoryBar, VictoryChart, VictoryGroup } from 'victory'
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryGroup } from 'victory'
 
 const data = [
   { day: 1, mood: 3, anxiety: 4 },
@@ -20,6 +20,13 @@ const Charts = () => {
   return (
     <div style={styles.chartContainer}>
       <VictoryChart>
+        <VictoryAxis
+          tickFormat={(x) => `Day ${x}`}
+          tickValues={data.map((point) => {
+            return point.day
+          })}
+        />
+        <VictoryAxis dependentAxis tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}/>
         <VictoryGroup offset={20} colorScale={'qualitative'}>
           <VictoryBar data={anxietyValues} />
           <VictoryBar data={moodValues} />
