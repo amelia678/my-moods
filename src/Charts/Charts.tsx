@@ -1,26 +1,29 @@
 import React from 'react'
-import { VictoryAxis, VictoryBar, VictoryChart } from 'victory'
+import { VictoryBar, VictoryChart, VictoryGroup } from 'victory'
 
 const data = [
-  { day: 1, mood: 3 },
-  { day: 2, mood: 7 },
-  { day: 3, mood: 8 },
-  { day: 4, mood: 6 },
+  { day: 1, mood: 3, anxiety: 4 },
+  { day: 2, mood: 7, anxiety: 3 },
+  { day: 3, mood: 8, anxiety: 2 },
+  { day: 4, mood: 6, anxiety: 3 },
 ]
 
-const xValues = data.map((point) => {
-  return point.day
+const anxietyValues = data.map((point) => {
+  return { x: point.day, y: point.anxiety }
 })
 
-const moodValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+const moodValues = data.map((point) => {
+  return { x: point.day, y: point.mood }
+})
 
 const Charts = () => {
   return (
     <div style={styles.chartContainer}>
-      <VictoryChart domainPadding={20}>
-        <VictoryAxis tickValues={xValues} tickFormat={(x) => `Day ${x}`} />
-        <VictoryAxis dependentAxis tickValues={moodValues} />
-        <VictoryBar data={data} x='day' y='mood' />
+      <VictoryChart>
+        <VictoryGroup offset={20} colorScale={'qualitative'}>
+          <VictoryBar data={anxietyValues} />
+          <VictoryBar data={moodValues} />
+        </VictoryGroup>
       </VictoryChart>
     </div>
   )
@@ -28,9 +31,9 @@ const Charts = () => {
 
 const styles = {
   chartContainer: {
-    width: '50%',
-    margin: 'auto'
-  }
+    width: '70%',
+    margin: 'auto',
+  },
 }
 
 export default Charts
