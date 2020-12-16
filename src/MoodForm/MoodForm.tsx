@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import moment from 'moment'
+import { useHistory } from 'react-router-dom'
 
 const MoodForm = () => {
+  let history = useHistory()
+
   const [start, setStart] = useState('')
   const [today, setToday] = useState(moment().format('YYYY-MM-DD'))
   const [mood, setMood] = useState('')
@@ -11,12 +14,17 @@ const MoodForm = () => {
     const startDate = moment(start)
     const endDate = moment(today)
 
-    return endDate.diff(startDate, 'days')
+    return endDate.diff(startDate, 'days') + 1
   }
 
   return (
     <div>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          history.push('/charts')
+        }}
+      >
         <label>
           When did your last period start?
           <div style={styles.formInput}>
@@ -70,7 +78,7 @@ const MoodForm = () => {
           </label>
         </div>
         <div style={styles.formInput}>
-          <button type='submit'>Submit</button>
+          <input type='submit' value='Submit'></input>
         </div>
       </form>
     </div>
