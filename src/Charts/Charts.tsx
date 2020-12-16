@@ -37,8 +37,8 @@ const Charts = () => {
           y={20}
           orientation={'horizontal'}
           data={[
-            { name: 'Mood', symbol: { fill: theme.mood } },
             { name: 'Anxiety', symbol: { fill: theme.anxiety } },
+            { name: 'Mood', symbol: { fill: theme.mood } },
           ]}
         />
         <VictoryAxis
