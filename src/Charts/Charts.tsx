@@ -31,8 +31,8 @@ const Charts = () => {
           y={20}
           orientation={'horizontal'}
           data={[
-            { name: 'Mood', symbol: { fill: 'red' } },
-            { name: 'Anxiety', symbol: { fill: 'orange' } },
+            { name: 'Mood', symbol: { fill: theme.mood } },
+            { name: 'Anxiety', symbol: { fill: theme.anxiety } },
           ]}
         />
         <VictoryAxis
@@ -47,10 +47,13 @@ const Charts = () => {
         />
         <VictoryGroup offset={20} colorScale={'qualitative'}>
           <VictoryBar
-            style={{ data: { fill: 'orange' } }}
+            style={{ data: { fill: theme.anxiety } }}
             data={anxietyValues}
           />
-          <VictoryBar style={{ data: { fill: 'red' } }} data={moodValues} />
+          <VictoryBar
+            style={{ data: { fill: theme.mood } }}
+            data={moodValues}
+          />
         </VictoryGroup>
       </VictoryChart>
     </div>
@@ -62,6 +65,11 @@ const styles = {
     width: '70%',
     margin: 'auto',
   },
+}
+
+const theme = {
+  mood: '#058af0',
+  anxiety: '#aadbe9',
 }
 
 export default Charts
