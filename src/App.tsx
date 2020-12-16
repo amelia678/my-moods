@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.css'
 import Charts from './Charts/Charts'
+import DefaultLayout from './layouts/DefaultLayout'
 import MoodForm from './MoodForm/MoodForm'
 
 function App() {
@@ -10,16 +11,14 @@ function App() {
     <Router>
       <Switch>
         <Route path='/charts'>
-          <div className='App'>
-            <h3>My Moods</h3>
+          <DefaultLayout>
             <Charts />
-          </div>
+          </DefaultLayout>
         </Route>
         <Route path='/'>
-          <div className='App'>
-            <h3>My Moods</h3>
+          <DefaultLayout>
             <MoodForm />
-          </div>
+          </DefaultLayout>
         </Route>
       </Switch>
     </Router>
