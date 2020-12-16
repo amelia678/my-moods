@@ -7,7 +7,13 @@ import {
   VictoryLegend,
 } from 'victory'
 
-const data = [
+interface Day {
+  day: number
+  mood: number
+  anxiety: number
+}
+
+const data: Day[] = [
   { day: 1, mood: 3, anxiety: 4 },
   { day: 2, mood: 7, anxiety: 3 },
   { day: 3, mood: 8, anxiety: 2 },
