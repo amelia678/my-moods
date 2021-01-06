@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import moment from 'moment'
 import { useHistory } from 'react-router-dom'
+import {
+  createStyles,
+  FormControl,
+  makeStyles,
+  MenuItem,
+  Select,
+  TextField,
+} from '@material-ui/core'
 
 const MoodForm = () => {
   let history = useHistory()
@@ -17,6 +25,16 @@ const MoodForm = () => {
     return endDate.diff(startDate, 'days') + 1
   }
 
+  const useStyles = makeStyles(() =>
+    createStyles({
+      formInput: {
+        padding: 8,
+      },
+    })
+  )
+
+  const classes = useStyles()
+
   return (
     <div>
       <form
@@ -25,70 +43,64 @@ const MoodForm = () => {
           history.push('/charts')
         }}
       >
-        <label>
-          When did your last period start?
-          <div style={styles.formInput}>
-            <input
-              type='date'
-              value={start}
-              onChange={(e) => setStart(e.target.value)}
-            ></input>
-          </div>
-        </label>
-        <div style={styles.formInput}>
+        <FormControl>
+          <label>First day of your last period:</label>
+          <TextField
+            id='last-period'
+            type='date'
+            defaultValue={start}
+            onChange={(e) => setStart(e.target.value)}
+          />
+        </FormControl>
+        <div className={classes.formInput}>
           {start && <div> Day {calculateDay(start)} </div>}
         </div>
-        <div style={styles.formInput}>
-          <label>
-            How would you rate your mood?
-            <select value={mood} onChange={(e) => setMood(e.target.value)}>
-              <option></option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-              <option value={9}>9</option>
-              <option value={10}>10</option>
-            </select>
-          </label>
-        </div>
-        <div style={styles.formInput}>
-          <label>
-            How would you rate your anxiety?
-            <select
-              value={anxiety}
-              onChange={(e) => setAnxiety(e.target.value)}
-            >
-              <option></option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-              <option value={9}>9</option>
-              <option value={10}>10</option>
-            </select>
-          </label>
-        </div>
-        <div style={styles.formInput}>
+        <FormControl className={classes.formInput}>
+          <label>How would you rate your mood?</label>
+          <Select
+            value={mood}
+            onChange={(e: React.ChangeEvent<{ value: unknown }>) =>
+              setMood(e.target.value as string)
+            }
+          >
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
+            <MenuItem value={7}>7</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formInput}>
+          <label>How would you rate your anxiety?</label>
+          <Select
+            value={anxiety}
+            onChange={(e: React.ChangeEvent<{ value: unknown }>) =>
+              setAnxiety(e.target.value as string)
+            }
+          >
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
+            <MenuItem value={7}>7</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+          </Select>
+        </FormControl>
+        <div className={classes.formInput}>
           <input type='submit' value='Submit'></input>
         </div>
       </form>
     </div>
   )
-}
-
-const styles = {
-  formInput: {
-    padding: 5,
-  },
 }
 
 export default MoodForm
