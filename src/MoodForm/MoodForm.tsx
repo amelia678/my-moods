@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useHistory } from 'react-router-dom'
 import {
+  Button,
   createStyles,
   FormControl,
   makeStyles,
@@ -96,7 +97,9 @@ const MoodForm = () => {
           </Select>
         </FormControl>
         <div className={classes.formInput}>
-          <input type='submit' value='Submit'></input>
+          <Button type='submit' variant='contained' color='primary'>
+            Submit
+          </Button>
         </div>
       </form>
     </div>
