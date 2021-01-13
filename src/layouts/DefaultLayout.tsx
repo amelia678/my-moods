@@ -2,6 +2,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   makeStyles,
+  Typography,
 } from '@material-ui/core'
 import { BarChart, List } from '@material-ui/icons'
 import React, { ReactNode, useState } from 'react'
@@ -24,7 +25,7 @@ const DefaultLayout = ({ children }: Props) => {
 
   return (
     <div className='App'>
-      <h3>My Moods</h3>
+      <Typography variant='h1' color='primary'>My Moods</Typography>
       {children}
       <footer className={classes.footer}>
         <BottomNavigation value={menuValue} onChange={handleChange} showLabels>

@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core'
 import React from 'react'
 import {
   VictoryAxis,
@@ -29,6 +30,7 @@ const moodValues = data.map((point) => {
 })
 
 const Charts = () => {
+  const theme = useTheme()
   return (
     <div style={styles.chartContainer}>
       <VictoryChart>
@@ -37,8 +39,11 @@ const Charts = () => {
           y={20}
           orientation={'horizontal'}
           data={[
-            { name: 'Anxiety', symbol: { fill: theme.anxiety } },
-            { name: 'Mood', symbol: { fill: theme.mood } },
+            {
+              name: 'Anxiety',
+              symbol: { fill: theme.palette.secondary.light },
+            },
+            { name: 'Mood', symbol: { fill: theme.palette.secondary.main } },
           ]}
         />
         <VictoryAxis
@@ -53,11 +58,11 @@ const Charts = () => {
         />
         <VictoryGroup offset={20} colorScale={'qualitative'}>
           <VictoryBar
-            style={{ data: { fill: theme.anxiety } }}
+            style={{ data: { fill: theme.palette.secondary.light } }}
             data={anxietyValues}
           />
           <VictoryBar
-            style={{ data: { fill: theme.mood } }}
+            style={{ data: { fill: theme.palette.secondary.main } }}
             data={moodValues}
           />
         </VictoryGroup>
@@ -71,11 +76,6 @@ const styles = {
     width: '70%',
     margin: 'auto',
   },
-}
-
-const theme = {
-  mood: '#058af0',
-  anxiety: '#aadbe9',
 }
 
 export default Charts
