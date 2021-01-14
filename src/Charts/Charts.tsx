@@ -1,5 +1,5 @@
-import { useTheme } from '@material-ui/core'
-import React from 'react'
+import { Button, useTheme } from '@material-ui/core'
+import React, { useState } from 'react'
 import {
   VictoryAxis,
   VictoryBar,
@@ -14,25 +14,37 @@ interface Day {
   anxiety: number
 }
 
-const data: Day[] = [
+const currentData: Day[] = [
   { day: 1, mood: 3, anxiety: 4 },
   { day: 2, mood: 7, anxiety: 3 },
   { day: 3, mood: 8, anxiety: 2 },
   { day: 4, mood: 6, anxiety: 3 },
 ]
 
-const anxietyValues = data.map((point) => {
-  return { x: point.day, y: point.anxiety }
-})
-
-const moodValues = data.map((point) => {
-  return { x: point.day, y: point.mood }
-})
+const previousData: Day[] = [
+  { day: 1, mood: 9, anxiety: 3 },
+  { day: 2, mood: 6, anxiety: 3 },
+  { day: 3, mood: 7, anxiety: 1 },
+  { day: 4, mood: 7, anxiety: 1 },
+]
 
 const Charts = () => {
+  const [data, setData] = useState(currentData)
+
+  const anxietyValues = data.map((point) => {
+    return { x: point.day, y: point.anxiety }
+  })
+
+  const moodValues = data.map((point) => {
+    return { x: point.day, y: point.mood }
+  })
+
   const theme = useTheme()
   return (
     <div style={styles.chartContainer}>
+      <Button color='secondary' onClick={() => setData(previousData)}>
+        Previous
+      </Button>
       <VictoryChart>
         <VictoryLegend
           x={50}
