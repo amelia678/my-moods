@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from '@material-ui/core'
 
 const MoodForm = () => {
@@ -54,7 +55,12 @@ const MoodForm = () => {
           />
         </FormControl>
         <div className={classes.formInput}>
-          {start && <div> Day {calculateDay(start)} </div>}
+          {start && (
+            <Typography variant='h6' color='secondary'>
+              {' '}
+              Day {calculateDay(start)}{' '}
+            </Typography>
+          )}
         </div>
         <FormControl className={classes.formInput}>
           <label>How would you rate your mood?</label>

@@ -13,20 +13,21 @@ interface Day {
   day: number
   mood: number
   anxiety: number
+  date: string
 }
 
 const currentData: Day[] = [
-  { day: 1, mood: 3, anxiety: 4 },
-  { day: 2, mood: 7, anxiety: 3 },
-  { day: 3, mood: 8, anxiety: 2 },
-  { day: 4, mood: 6, anxiety: 3 },
+  { day: 1, mood: 3, anxiety: 4, date: '2021/01/09' },
+  { day: 2, mood: 7, anxiety: 3 , date: '2021/01/10' },
+  { day: 3, mood: 8, anxiety: 2 , date: '2021/01/11' },
+  { day: 4, mood: 6, anxiety: 3 , date: '2021/01/12' },
 ]
 
 const previousData: Day[] = [
-  { day: 1, mood: 9, anxiety: 3 },
-  { day: 2, mood: 6, anxiety: 3 },
-  { day: 3, mood: 7, anxiety: 1 },
-  { day: 4, mood: 7, anxiety: 1 },
+  { day: 1, mood: 9, anxiety: 3, date: '2020/12/13' },
+  { day: 2, mood: 6, anxiety: 3, date: '2020/12/14' },
+  { day: 3, mood: 7, anxiety: 1, date: '2020/12/15' },
+  { day: 4, mood: 7, anxiety: 1, date: '2020/12/16' },
 ]
 
 const Charts = () => {
@@ -54,14 +55,15 @@ const Charts = () => {
           Previous
         </Button>
         <Box pr={3}>
-          <Typography variant='h3'>Current Cycle</Typography>
+          <Typography variant='h3' color='secondary'>Current Cycle</Typography>
         </Box>
         <Button
           variant='contained'
           color='secondary'
           size='small'
           endIcon={<SkipNext />}
-          disabled
+          disabled={data == currentData}
+          onClick={() => setData(currentData)}
         >
           Next
         </Button>
