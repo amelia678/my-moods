@@ -45,7 +45,7 @@ const Charts = () => {
   const theme = useTheme()
 
   const chartTitle = () => {
-    if (data == currentData) {
+    if (data === currentData) {
       return `Current Cycle, start ${moment(currentData[0].date).format(
         'MMMM D, YYYY'
       )} `
@@ -77,7 +77,7 @@ const Charts = () => {
           color='secondary'
           size='small'
           endIcon={<SkipNext />}
-          disabled={data == currentData}
+          disabled={data === currentData}
           onClick={() => setData(currentData)}
         >
           Next
