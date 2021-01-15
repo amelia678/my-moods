@@ -25,6 +25,9 @@ const theme = createMuiTheme({
       fontWeight: 700,
       padding: 18,
     },
+    h3: {
+      fontSize: '1.5rem',
+    },
   },
   overrides: {
     MuiCssBaseline: {
