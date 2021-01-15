@@ -1,5 +1,6 @@
 import { Box, Button, Typography, useTheme } from '@material-ui/core'
 import { SkipNext, SkipPrevious } from '@material-ui/icons'
+import moment from 'moment'
 import React, { useState } from 'react'
 import {
   VictoryAxis,
@@ -18,9 +19,9 @@ interface Day {
 
 const currentData: Day[] = [
   { day: 1, mood: 3, anxiety: 4, date: '2021/01/09' },
-  { day: 2, mood: 7, anxiety: 3 , date: '2021/01/10' },
-  { day: 3, mood: 8, anxiety: 2 , date: '2021/01/11' },
-  { day: 4, mood: 6, anxiety: 3 , date: '2021/01/12' },
+  { day: 2, mood: 7, anxiety: 3, date: '2021/01/10' },
+  { day: 3, mood: 8, anxiety: 2, date: '2021/01/11' },
+  { day: 4, mood: 6, anxiety: 3, date: '2021/01/12' },
 ]
 
 const previousData: Day[] = [
@@ -42,6 +43,18 @@ const Charts = () => {
   })
 
   const theme = useTheme()
+
+  const chartTitle = () => {
+    if (data == currentData) {
+      return `Current Cycle, start ${moment(currentData[0].date).format(
+        'MMMM D, YYYY'
+      )} `
+    } else {
+      return `${moment(previousData[0].date).format('MMMM D, YYYY')} - ${moment(
+        previousData[previousData.length - 1].date
+      ).format('MMMM D, YYYY')}`
+    }
+  }
   return (
     <>
       <Box display='flex' justifyContent='space-around'>
@@ -55,7 +68,9 @@ const Charts = () => {
           Previous
         </Button>
         <Box pr={3}>
-          <Typography variant='h3' color='secondary'>Current Cycle</Typography>
+          <Typography variant='h3' color='secondary'>
+            {chartTitle()}
+          </Typography>
         </Box>
         <Button
           variant='contained'
