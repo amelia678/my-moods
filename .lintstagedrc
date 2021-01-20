@@ -1,0 +1,5 @@
+{
+  "*.+(js|json|ts|tsx|html|css|md)": [
+    "prettier --write"
+  ]
+}

@@ -25,7 +25,9 @@ const DefaultLayout = ({ children }: Props) => {
 
   return (
     <div className='App'>
-      <Typography variant='h1' color='primary'>My Moods</Typography>
+      <Typography variant='h1' color='primary'>
+        My Moods
+      </Typography>
       {children}
       <footer className={classes.footer}>
         <BottomNavigation value={menuValue} onChange={handleChange} showLabels>
