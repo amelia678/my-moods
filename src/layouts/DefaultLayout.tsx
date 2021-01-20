@@ -7,6 +7,7 @@ import {
 import { BarChart, List } from '@material-ui/icons'
 import React, { ReactNode, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
+import balloons from '../assets/images/balloons.jpg'
 
 interface Props {
   children: ReactNode
@@ -24,7 +25,10 @@ const DefaultLayout = ({ children }: Props) => {
   }
 
   return (
-    <div className='App'>
+    <div
+      className={`App ${classes.backgroundImage}`}
+      style={{ backgroundImage: `url(${balloons})` }}
+    >
       <Typography variant='h1' color='primary'>
         My Moods
       </Typography>
@@ -49,6 +53,12 @@ const useStyles = makeStyles({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  backgroundImage: {
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    height: '100vh',
   },
 })
 

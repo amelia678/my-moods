@@ -27,14 +27,6 @@ const MoodForm = () => {
     return endDate.diff(startDate, 'days') + 1
   }
 
-  const useStyles = makeStyles(() =>
-    createStyles({
-      formInput: {
-        padding: 8,
-      },
-    })
-  )
-
   const classes = useStyles()
 
   return (
@@ -111,5 +103,13 @@ const MoodForm = () => {
     </div>
   )
 }
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    formInput: {
+      padding: 8,
+    },
+  })
+)
 
 export default MoodForm
