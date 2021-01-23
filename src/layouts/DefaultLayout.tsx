@@ -29,9 +29,7 @@ const DefaultLayout = ({ children }: Props) => {
       className={`App ${classes.backgroundImage}`}
       style={{ backgroundImage: `url(${balloons})` }}
     >
-      <Typography variant='h1' color='primary'>
-        My Moods
-      </Typography>
+      <Typography variant='h1'>My Moods</Typography>
       {children}
       <footer className={classes.footer}>
         <BottomNavigation value={menuValue} onChange={handleChange} showLabels>

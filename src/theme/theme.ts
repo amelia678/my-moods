@@ -21,9 +21,11 @@ const theme = createMuiTheme({
     fontFamily: 'Rubik, Arial',
     h1: {
       fontStyle: 'italic',
-      fontSize: '2rem',
+      fontSize: '2.5rem',
       fontWeight: 700,
       padding: 18,
+      color: 'white',
+      textShadow: '2px 2px 2px #023a64',
     },
     h3: {
       fontSize: '1.5rem',
