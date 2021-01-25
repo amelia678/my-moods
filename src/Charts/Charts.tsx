@@ -1,4 +1,13 @@
-import { Box, Button, Typography, useTheme } from '@material-ui/core'
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  createStyles,
+  makeStyles,
+  Typography,
+  useTheme,
+} from '@material-ui/core'
 import { SkipNext, SkipPrevious } from '@material-ui/icons'
 import moment from 'moment'
 import React, { useState } from 'react'
@@ -43,10 +52,11 @@ const Charts = () => {
   })
 
   const theme = useTheme()
+  const classes = useStyles()
 
   const chartTitle = () => {
     if (data === currentData) {
-      return `Current Cycle, start ${moment(currentData[0].date).format(
+      return `Current Cycle: start ${moment(currentData[0].date).format(
         'MMMM D, YYYY'
       )} `
     } else {
@@ -57,77 +67,84 @@ const Charts = () => {
   }
   return (
     <>
-      <Box display='flex' justifyContent='space-around'>
-        <Button
-          variant='contained'
-          color='secondary'
-          size='small'
-          startIcon={<SkipPrevious />}
-          onClick={() => setData(previousData)}
-        >
-          Previous
-        </Button>
-        <Box pr={3}>
-          <Typography variant='h3' color='secondary'>
-            {chartTitle()}
-          </Typography>
-        </Box>
-        <Button
-          variant='contained'
-          color='secondary'
-          size='small'
-          endIcon={<SkipNext />}
-          disabled={data === currentData}
-          onClick={() => setData(currentData)}
-        >
-          Next
-        </Button>
-      </Box>
-      <div style={styles.chartContainer}>
-        <VictoryChart>
-          <VictoryLegend
-            x={50}
-            y={20}
-            orientation={'horizontal'}
-            data={[
-              {
-                name: 'Anxiety',
-                symbol: { fill: theme.palette.secondary.light },
-              },
-              { name: 'Mood', symbol: { fill: theme.palette.secondary.main } },
-            ]}
-          />
-          <VictoryAxis
-            tickFormat={(x) => `Day ${x}`}
-            tickValues={data.map((point) => {
-              return point.day
-            })}
-          />
-          <VictoryAxis
-            dependentAxis
-            tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-          />
-          <VictoryGroup offset={20} colorScale={'qualitative'}>
-            <VictoryBar
-              style={{ data: { fill: theme.palette.secondary.light } }}
-              data={anxietyValues}
+      <Card className={classes.root}>
+        <CardContent>
+          <Box display='flex' justifyContent='space-around'>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='small'
+              startIcon={<SkipPrevious />}
+              onClick={() => setData(previousData)}
+            >
+              Previous
+            </Button>
+            <Box pr={3}>
+              <Typography variant='h3'>{chartTitle()}</Typography>
+            </Box>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='small'
+              endIcon={<SkipNext />}
+              disabled={data === currentData}
+              onClick={() => setData(currentData)}
+            >
+              Next
+            </Button>
+          </Box>
+
+          <VictoryChart height={250}>
+            <VictoryLegend
+              x={50}
+              y={20}
+              orientation={'horizontal'}
+              data={[
+                {
+                  name: 'Anxiety',
+                  symbol: { fill: theme.palette.secondary.light },
+                },
+                {
+                  name: 'Mood',
+                  symbol: { fill: theme.palette.secondary.main },
+                },
+              ]}
             />
-            <VictoryBar
-              style={{ data: { fill: theme.palette.secondary.main } }}
-              data={moodValues}
+            <VictoryAxis
+              tickFormat={(x) => `Day ${x}`}
+              tickValues={data.map((point) => {
+                return point.day
+              })}
             />
-          </VictoryGroup>
-        </VictoryChart>
-      </div>
+            <VictoryAxis
+              dependentAxis
+              tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            />
+            <VictoryGroup offset={20} colorScale={'qualitative'}>
+              <VictoryBar
+                style={{ data: { fill: theme.palette.secondary.light } }}
+                data={anxietyValues}
+              />
+              <VictoryBar
+                style={{ data: { fill: theme.palette.secondary.main } }}
+                data={moodValues}
+              />
+            </VictoryGroup>
+          </VictoryChart>
+        </CardContent>
+      </Card>
     </>
   )
 }
 
-const styles = {
-  chartContainer: {
-    width: '70%',
-    margin: 'auto',
-  },
-}
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      width: '70%',
+      margin: 'auto',
+      background: 'rgba(255,255,255,0.9)',
+    },
+  })
+)
 
 export default Charts
