@@ -6,7 +6,6 @@ import {
   createStyles,
   makeStyles,
   Typography,
-  useTheme,
 } from '@material-ui/core'
 import { SkipNext, SkipPrevious } from '@material-ui/icons'
 import moment from 'moment'
@@ -18,6 +17,7 @@ import {
   VictoryGroup,
   VictoryLegend,
 } from 'victory'
+import theme from '../theme/theme'
 
 interface Day {
   day: number
@@ -51,7 +51,6 @@ const Charts = () => {
     return { x: point.day, y: point.mood }
   })
 
-  const theme = useTheme()
   const classes = useStyles()
 
   const chartTitle = () => {
@@ -141,10 +140,15 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: '70%',
+      [theme.breakpoints.down('sm')]: {
+        width: '90%',
+      },
+      [theme.breakpoints.up('md')]: {
+        width: '70%',
+      },
       margin: 'auto',
       background: 'rgba(255,255,255,0.9)',
     },
   })
 )
-
 export default Charts
