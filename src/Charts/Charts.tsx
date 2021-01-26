@@ -68,29 +68,33 @@ const Charts = () => {
     <>
       <Card className={classes.root}>
         <CardContent>
-          <Box display='flex' justifyContent='space-around'>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='small'
-              startIcon={<SkipPrevious />}
-              onClick={() => setData(previousData)}
-            >
-              Previous
-            </Button>
+          <Box display='flex' justifyContent='space-around' flexWrap='wrap'>
+            <Box my={1}>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='small'
+                startIcon={<SkipPrevious />}
+                onClick={() => setData(previousData)}
+              >
+                Previous
+              </Button>
+            </Box>
             <Box pr={3}>
               <Typography variant='h3'>{chartTitle()}</Typography>
             </Box>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='small'
-              endIcon={<SkipNext />}
-              disabled={data === currentData}
-              onClick={() => setData(currentData)}
-            >
-              Next
-            </Button>
+            <Box my={1}>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='small'
+                endIcon={<SkipNext />}
+                disabled={data === currentData}
+                onClick={() => setData(currentData)}
+              >
+                Next
+              </Button>
+            </Box>
           </Box>
 
           <VictoryChart height={250}>
