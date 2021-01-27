@@ -18,9 +18,10 @@ const MoodForm = () => {
   let history = useHistory()
 
   const [start, setStart] = useState('')
-  const [today, setToday] = useState(moment().format('YYYY-MM-DD'))
   const [mood, setMood] = useState('')
   const [anxiety, setAnxiety] = useState('')
+
+  const today = moment().format('YYYY-MM-DD')
 
   const calculateDay = (start: string) => {
     const startDate = moment(start)
