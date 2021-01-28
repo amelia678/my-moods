@@ -16,6 +16,7 @@ import {
   VictoryChart,
   VictoryGroup,
   VictoryLegend,
+  VictoryScatter,
 } from 'victory'
 import theme from '../theme/theme'
 
@@ -24,20 +25,21 @@ interface Day {
   mood: number
   anxiety: number
   date: string
+  meditate: boolean
 }
 
 const currentData: Day[] = [
-  { day: 1, mood: 3, anxiety: 4, date: '2021/01/09' },
-  { day: 2, mood: 7, anxiety: 3, date: '2021/01/10' },
-  { day: 3, mood: 8, anxiety: 2, date: '2021/01/11' },
-  { day: 4, mood: 6, anxiety: 3, date: '2021/01/12' },
+  { day: 1, mood: 3, anxiety: 4, meditate: true, date: '2021/01/09' },
+  { day: 2, mood: 7, anxiety: 3, meditate: false, date: '2021/01/10' },
+  { day: 3, mood: 8, anxiety: 2, meditate: true, date: '2021/01/11' },
+  { day: 4, mood: 6, anxiety: 3, meditate: true, date: '2021/01/12' },
 ]
 
 const previousData: Day[] = [
-  { day: 1, mood: 9, anxiety: 3, date: '2020/12/13' },
-  { day: 2, mood: 6, anxiety: 3, date: '2020/12/14' },
-  { day: 3, mood: 7, anxiety: 1, date: '2020/12/15' },
-  { day: 4, mood: 7, anxiety: 1, date: '2020/12/16' },
+  { day: 1, mood: 9, anxiety: 3, meditate: false, date: '2020/12/13' },
+  { day: 2, mood: 6, anxiety: 3, meditate: true, date: '2020/12/14' },
+  { day: 3, mood: 7, anxiety: 1, meditate: true, date: '2020/12/15' },
+  { day: 4, mood: 7, anxiety: 1, meditate: false, date: '2020/12/16' },
 ]
 
 const Charts = () => {
@@ -50,6 +52,12 @@ const Charts = () => {
   const moodValues = data.map((point) => {
     return { x: point.day, y: point.mood }
   })
+
+  const meditateValues = data
+    .filter((item) => item.meditate == true)
+    .map((point) => {
+      return { x: point.day, y: 0, symbol: 'star', size: 5 }
+    })
 
   const classes = useStyles()
 
@@ -133,6 +141,10 @@ const Charts = () => {
                 data={moodValues}
               />
             </VictoryGroup>
+            <VictoryScatter
+              data={meditateValues}
+              style={{ data: { fill: 'yellow' } }}
+            />
           </VictoryChart>
         </CardContent>
       </Card>
