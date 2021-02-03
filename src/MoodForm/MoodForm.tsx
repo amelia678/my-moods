@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useHistory } from 'react-router-dom'
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -15,6 +16,7 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core'
+import theme from '../theme/theme'
 
 const MoodForm = () => {
   let history = useHistory()
@@ -106,19 +108,21 @@ const MoodForm = () => {
               <MenuItem value={10}>10</MenuItem>
             </Select>
           </FormControl>
-
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={meditate}
-                onChange={handleCheck}
-                name={'meditate'}
+          <FormControl fullWidth className={classes.formInput}>
+            <Box display='flex' justifyContent='center'>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={meditate}
+                    onChange={handleCheck}
+                    name={'meditate'}
+                  />
+                }
+                label='Did you meditate?'
+                labelPlacement='start'
               />
-            }
-            label='Did you meditate?'
-            labelPlacement='start'
-          />
-
+            </Box>
+          </FormControl>
           <div className={classes.formInput}>
             <Button type='submit' variant='contained' color='primary'>
               Submit
@@ -135,6 +139,9 @@ const useStyles = makeStyles(() =>
     root: {
       background: 'rgba(255,255,255,0.8)',
       width: '50%',
+      [theme.breakpoints.down('sm')]: {
+        width: '70%',
+      },
       margin: 'auto',
       borderRadius: '12px',
     },
