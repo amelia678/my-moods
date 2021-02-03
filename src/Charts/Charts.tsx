@@ -54,7 +54,7 @@ const Charts = () => {
   })
 
   const meditateValues = data
-    .filter((item) => item.meditate == true)
+    .filter((item) => item.meditate === true)
     .map((point) => {
       return { x: point.day, y: 0, symbol: 'star', size: 5 }
     })

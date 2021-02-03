@@ -5,8 +5,10 @@ import {
   Button,
   Card,
   CardContent,
+  Checkbox,
   createStyles,
   FormControl,
+  FormControlLabel,
   makeStyles,
   MenuItem,
   Select,
@@ -20,6 +22,7 @@ const MoodForm = () => {
   const [start, setStart] = useState('')
   const [mood, setMood] = useState('')
   const [anxiety, setAnxiety] = useState('')
+  const [meditate, setMeditate] = useState(false)
 
   const today = moment().format('YYYY-MM-DD')
 
@@ -28,6 +31,10 @@ const MoodForm = () => {
     const endDate = moment(today)
 
     return endDate.diff(startDate, 'days') + 1
+  }
+
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMeditate(event.target.checked)
   }
 
   const classes = useStyles()
@@ -58,6 +65,7 @@ const MoodForm = () => {
               </Typography>
             )}
           </div>
+
           <FormControl className={classes.formInput}>
             <label>How would you rate your mood?</label>
             <Select
@@ -98,6 +106,19 @@ const MoodForm = () => {
               <MenuItem value={10}>10</MenuItem>
             </Select>
           </FormControl>
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={meditate}
+                onChange={handleCheck}
+                name={'meditate'}
+              />
+            }
+            label='Did you meditate?'
+            labelPlacement='start'
+          />
+
           <div className={classes.formInput}>
             <Button type='submit' variant='contained' color='primary'>
               Submit
