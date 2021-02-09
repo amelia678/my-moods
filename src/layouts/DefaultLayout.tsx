@@ -5,8 +5,8 @@ import {
   Typography,
 } from '@material-ui/core'
 import { BarChart, List } from '@material-ui/icons'
-import React, { ReactNode, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import React, { ReactNode, useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import balloons from '../assets/images/balloons.jpg'
 
 interface Props {
@@ -14,13 +14,16 @@ interface Props {
 }
 
 const DefaultLayout = ({ children }: Props) => {
-  const location = useLocation()
-  const history = useHistory()
+  let location = useLocation()
+
   const classes = useStyles()
   const [menuValue, setMenuValue] = useState(location.pathname)
 
+  useEffect(() => {
+    setMenuValue(location.pathname)
+  }, [location.pathname])
+
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-    history.push(newValue)
     setMenuValue(newValue)
   }
 
@@ -34,11 +37,19 @@ const DefaultLayout = ({ children }: Props) => {
       <footer className={classes.footer}>
         <BottomNavigation value={menuValue} onChange={handleChange} showLabels>
           <BottomNavigationAction
+            component={Link}
+            to={'/charts'}
             label='Charts'
             value='/charts'
             icon={<BarChart />}
           />
-          <BottomNavigationAction label='MoodLog' value='/' icon={<List />} />
+          <BottomNavigationAction
+            component={Link}
+            to={'/'}
+            label='MoodLog'
+            value='/'
+            icon={<List />}
+          />
         </BottomNavigation>
       </footer>
     </div>
