@@ -119,6 +119,10 @@ const Charts = () => {
                   name: 'Mood',
                   symbol: { fill: theme.palette.secondary.main },
                 },
+                {
+                  name: 'Meditate',
+                  symbol: { fill: 'gold', type: 'star' },
+                },
               ]}
             />
             <VictoryAxis
@@ -143,7 +147,7 @@ const Charts = () => {
             </VictoryGroup>
             <VictoryScatter
               data={meditateValues}
-              style={{ data: { fill: 'yellow' } }}
+              style={{ data: { fill: 'gold' } }}
             />
           </VictoryChart>
         </CardContent>
