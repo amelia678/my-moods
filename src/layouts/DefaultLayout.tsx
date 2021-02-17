@@ -1,13 +1,15 @@
 import {
   BottomNavigation,
   BottomNavigationAction,
+  Button,
   makeStyles,
   Typography,
 } from '@material-ui/core'
 import { BarChart, List } from '@material-ui/icons'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import balloons from '../assets/images/balloons.jpg'
+import { ThemeContext } from '../theme/ThemeProvider'
 
 interface Props {
   children: ReactNode
@@ -18,6 +20,7 @@ const DefaultLayout = ({ children }: Props) => {
 
   const classes = useStyles()
   const [menuValue, setMenuValue] = useState(location.pathname)
+  const setThemeName = useContext(ThemeContext)
 
   useEffect(() => {
     setMenuValue(location.pathname)
@@ -50,6 +53,8 @@ const DefaultLayout = ({ children }: Props) => {
             value='/'
             icon={<List />}
           />
+          <Button onClick={() => setThemeName('dark')}>Set Dark</Button>
+          <Button onClick={() => setThemeName('light')}>Set Light</Button>
         </BottomNavigation>
       </footer>
     </div>

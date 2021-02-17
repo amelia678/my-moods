@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import { CssBaseline, ThemeProvider } from '@material-ui/core'
-import theme from './theme/theme'
+import { CssBaseline } from '@material-ui/core'
+
+import ThemeProvider from './theme/ThemeProvider'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <CssBaseline />
       <App />
     </ThemeProvider>

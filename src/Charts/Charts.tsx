@@ -18,7 +18,7 @@ import {
   VictoryLegend,
   VictoryScatter,
 } from 'victory'
-import theme from '../theme/theme'
+import theme from '../theme/light'
 
 interface Day {
   day: number

@@ -16,7 +16,7 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core'
-import theme from '../theme/theme'
+import theme from '../theme/light'
 
 const MoodForm = () => {
   let history = useHistory()

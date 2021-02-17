@@ -9,6 +9,7 @@ const rubik = {
 
 const theme = createMuiTheme({
   palette: {
+    type: 'dark',
     primary: {
       main: '#023a64',
     },
