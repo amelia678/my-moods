@@ -16,8 +16,8 @@ interface Props {
   children: ReactNode
 }
 
-const appTheme = localStorage.getItem('appTheme')
 const DefaultLayout = ({ children }: Props) => {
+  let appTheme = localStorage.getItem('appTheme')
   let location = useLocation()
 
   const classes = useStyles()
@@ -36,7 +36,7 @@ const DefaultLayout = ({ children }: Props) => {
 
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDarkMode(event.target.checked)
-    appTheme === 'light' ? setThemeName('dark') : setThemeName('light')
+    darkMode ? setThemeName('light') : setThemeName('dark')
   }
 
   return (
