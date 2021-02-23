@@ -124,7 +124,7 @@ const MoodForm = () => {
             </Box>
           </FormControl>
           <div className={classes.formInput}>
-            <Button type='submit' variant='contained' color='primary'>
+            <Button type='submit' variant='contained' color='secondary'>
               Submit
             </Button>
           </div>

@@ -1,8 +1,9 @@
 import {
   BottomNavigation,
   BottomNavigationAction,
-  Button,
+  FormControlLabel,
   makeStyles,
+  Switch,
   Typography,
 } from '@material-ui/core'
 import { BarChart, List } from '@material-ui/icons'
@@ -15,11 +16,14 @@ interface Props {
   children: ReactNode
 }
 
+const appTheme = localStorage.getItem('appTheme')
 const DefaultLayout = ({ children }: Props) => {
   let location = useLocation()
 
   const classes = useStyles()
   const [menuValue, setMenuValue] = useState(location.pathname)
+  const [darkMode, setDarkMode] = useState(appTheme === 'dark')
+
   const setThemeName = useContext(ThemeContext)
 
   useEffect(() => {
@@ -28,6 +32,11 @@ const DefaultLayout = ({ children }: Props) => {
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
     setMenuValue(newValue)
+  }
+
+  const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDarkMode(event.target.checked)
+    appTheme === 'light' ? setThemeName('dark') : setThemeName('light')
   }
 
   return (
@@ -53,8 +62,10 @@ const DefaultLayout = ({ children }: Props) => {
             value='/'
             icon={<List />}
           />
-          <Button onClick={() => setThemeName('dark')}>Set Dark</Button>
-          <Button onClick={() => setThemeName('light')}>Set Light</Button>
+          <FormControlLabel
+            control={<Switch checked={darkMode} onChange={handleSwitch} />}
+            label='Dark Mode'
+          />
         </BottomNavigation>
       </footer>
     </div>
