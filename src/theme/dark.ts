@@ -44,6 +44,11 @@ const theme = createMuiTheme({
         '@font-face': [rubik],
       },
     },
+    MuiCard: {
+      root: {
+        background: 'rgba(66, 66, 66, 0.8)',
+      },
+    },
   },
 })
 

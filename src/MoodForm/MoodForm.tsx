@@ -137,7 +137,6 @@ const MoodForm = () => {
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      background: 'rgba(255,255,255,0.8)',
       width: '50%',
       [theme.breakpoints.down('sm')]: {
         width: '70%',
