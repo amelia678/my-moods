@@ -6,6 +6,7 @@ import {
   createStyles,
   makeStyles,
   Typography,
+  useTheme,
 } from '@material-ui/core'
 import { SkipNext, SkipPrevious } from '@material-ui/icons'
 import moment from 'moment'
@@ -44,6 +45,8 @@ const previousData: Day[] = [
 
 const Charts = () => {
   const [data, setData] = useState(currentData)
+
+  const appTheme = useTheme()
 
   const anxietyValues = data.map((point) => {
     return { x: point.day, y: point.anxiety }
@@ -114,14 +117,17 @@ const Charts = () => {
                 {
                   name: 'Anxiety',
                   symbol: { fill: theme.palette.secondary.light },
+                  labels: { fill: appTheme.palette.text.primary },
                 },
                 {
                   name: 'Mood',
                   symbol: { fill: theme.palette.secondary.main },
+                  labels: { fill: appTheme.palette.text.primary },
                 },
                 {
                   name: 'Meditate',
                   symbol: { fill: 'gold', type: 'star' },
+                  labels: { fill: appTheme.palette.text.primary },
                 },
               ]}
             />
@@ -130,10 +136,16 @@ const Charts = () => {
               tickValues={data.map((point) => {
                 return point.day
               })}
+              style={{
+                tickLabels: { fill: appTheme.palette.text.primary },
+              }}
             />
             <VictoryAxis
               dependentAxis
               tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+              style={{
+                tickLabels: { fill: appTheme.palette.text.primary },
+              }}
             />
             <VictoryGroup offset={20} colorScale={'qualitative'}>
               <VictoryBar
@@ -167,7 +179,6 @@ const useStyles = makeStyles(() =>
         width: '70%',
       },
       margin: 'auto',
-      background: 'rgba(255,255,255,0.9)',
     },
   })
 )
